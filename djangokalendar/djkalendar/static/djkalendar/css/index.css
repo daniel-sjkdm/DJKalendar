@@ -1,0 +1,31 @@
+#kalendar-cell {
+	background-color: green;
+	color: white;
+	font-size: "22px";
+}
+
+#kalendar-prev-button {
+	width: 100%;
+}
+
+#kalendar-next-button {
+	width: 100%;
+}
+
+table thead tr {
+	text-align: center;
+	background-color: gray;
+}
+
+#kalendar-table {
+	border: 2px solid blue;
+}
+
+#kalendar-search-date {
+	width: 100%;
+}
+
+
+/*.table-bordered {
+	border: 2px solid blue;
+}*/

@@ -1,0 +1,75 @@
+{% extends 'djkalendar/base.html' %}
+{% load static %}
+
+{% block title %}
+	<title> DJKalendar </title>
+{% endblock title %}
+
+
+{% block styles %}
+	<link rel="stylesheet" type="text/css" href="{% static 'djkalendar/css/index.css' %}">
+{% endblock styles %} 
+
+
+{% block content %}
+
+    <div class="container mt-5">
+        <div id="kalendar">
+
+            <div class="row">
+                <div class="col">
+                    <button class="btn btn-primary" id="kalendar-prev-button"> Prev </button>
+                </div>
+                <div class="col">
+                    <h1 id="kalendar-date"></h1>
+                </div>
+                <div class="col">
+                    <button class="btn btn-primary" id="kalendar-next-button"> Next </button>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12">
+                    <input type="text" placeholder="dd/mm/yyyy" id="kalendar-search-date"/>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col">  
+                    <div>
+                        <table class="table table-bordered" id="kalendar-table">
+                            <thead id="kalendar-table-head">
+                                <tr>
+                                    <th> Sunday </th>
+                                    <th> Monday </th>
+                                    <th> Tuesday </th>
+                                    <th> Wednesday </th>
+                                    <th> Thursday </th>
+                                    <th> Friday </th>
+                                    <th> Saturday </th>
+                                </tr>
+                            </thead>
+                            <tbody id="kalendar-table-body"> 
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-8"> 
+                    There are # events
+                </div>
+                <div class="col-4"> 
+                    Add event
+                </div>
+            </div>
+
+        </div>
+    </div>
+{% endblock content %}
+
+
+{% block scripts %}
+	<script type="text/javascript" src="{% static 'djkalendar/js/index.js' %}"></script>
+{% endblock scripts %}
