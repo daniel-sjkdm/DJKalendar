@@ -29,12 +29,6 @@
             </div>
 
             <div class="row">
-                <div class="col-12">
-                    <input type="text" placeholder="dd/mm/yyyy" id="kalendar-search-date"/>
-                </div>
-            </div>
-
-            <div class="row">
                 <div class="col">  
                     <div>
                         <table class="table table-bordered" id="kalendar-table">
@@ -58,7 +52,15 @@
 
             <div class="row">
                 <div class="col-8"> 
-                    There are # events
+                    There are {{ events | length }} events
+                    <br/> <hr/>
+                    {% for event in events  %}
+                        Title: {{ event.title }} <br/>
+                        Description: {{ event.description }} <br/>
+                        Starts: {{ event.starts }} <br/>
+                        Ends: {{ event.ends }} <br/>
+                        Is Completed: {{ event.completed }} <br/> <hr/>
+                    {% endfor %}
                 </div>
                 <div class="col-4"> 
                     Add event
