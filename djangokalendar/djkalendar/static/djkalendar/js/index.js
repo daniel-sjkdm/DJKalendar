@@ -32,7 +32,7 @@ const displayDate = (year, month) => {
     $("#kalendar-date").html(date.toDateString());
 }
 
-const createCalendar = (events, year, month) => {
+const createCalendar = (year, month) => {
     const calendar_days = calendarDays(year, month);
     for (let i=1; i<7; i++) {
         $("#kalendar-table-body").append(`<tr id="row-${i}"> </tr>`)
@@ -40,7 +40,7 @@ const createCalendar = (events, year, month) => {
     let row = 1;
     calendar_days.forEach((day, index) => {
         $(`#row-${row}`).append(
-            `<td class="kalendar-cell"> ${day} </td>` 
+            `<td id="kalendar-cell"> ${day} </td>` 
         )
         if ((index+1) % 7 == 0) {
             row ++;
@@ -69,9 +69,38 @@ const createCalendar = (events, year, month) => {
 
 */
 
-const fetchEvents = (year, month) => {
-
+class Event {
+    url = 'http://localhost:8000/kalendar/api/events/';
+    headers = {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+    }
+    fetchEvents = (id) => {
+        if (id) {
+            fetch(this.url + `${id}/`, {
+                method: 'get',
+                headers: this.headers
+            })
+            .then(response => response.json()) 
+            .then(data => console.log(data))
+            .catch( error => {
+                console.log(error)
+            })
+        }
+        else {
+            fetch(this.url, {
+                method: 'get',
+                headers: this.headers,
+            })
+            .then( response => response.json())
+            .then( data => console.log(data))
+            .catch( error => {
+                console.log(error)
+            })
+        }
+    }
 }
+
 
 const date = new Date();
 let year = date.getFullYear();
@@ -80,24 +109,16 @@ console.log(year, month)
 console.log(date.toDateString());
 
 $(document).ready( function() {
-    console.log("Working...!");
+    console.log("Working 2...!");
     displayDate(year, month);
-    createCalendar('', year, month+1);
+    createCalendar(year, month+1);
+    const event_object = new Event();
+    event_object.fetchEvents(1);
 });
 
 
 // -- Events 
 
-// TODO: Validate date format
-$('#kalendar-search-date').change((event) => {
-    const search_text = event.target.value;
-    console.log(search_text);
-    const [year, month] = search_text.split("/");
-    console.log("Year = ", year)
-    console.log("Month = ", month) 
-});
-
-// TODO: Fix this shit
 $("#kalendar-prev-button").click((event) => {
     event.preventDefault();
     if (month > 0) {
@@ -109,7 +130,7 @@ $("#kalendar-prev-button").click((event) => {
     }
     $("#kalendar-table-body").empty();
     displayDate(year, month);
-    createCalendar('', year, month+1);
+    createCalendar(year, month+1);
 });
 
 $("#kalendar-next-button").click((event) => {
@@ -123,5 +144,5 @@ $("#kalendar-next-button").click((event) => {
     }
     $("#kalendar-table-body").empty();
     displayDate(year, month);
-    createCalendar('', year, month+1);
+    createCalendar(year, month+1);
 });
