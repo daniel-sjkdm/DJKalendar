@@ -1,7 +1,16 @@
+table {
+	border-bottom: 2px solid #1279e8;
+}
+
 #kalendar-cell {
-	background-color: green;
-	color: white;
 	font-size: "22px";
+	width: 120px;
+	height: 120px;
+}
+
+#kalendar-cell:hover {
+	background-color: #656A7C;
+	color: white;
 }
 
 #kalendar-prev-button {
@@ -12,19 +21,19 @@
 	width: 100%;
 }
 
+table {
+	border-radius: 10px;
+}
+
 table thead tr {
 	text-align: center;
-	background-color: gray;
+	background-color: #1279e8;
+	color: white;
 }
 
 #kalendar-table {
-	border: 2px solid blue;
+	border: 1px solid gray;
 }
-
-#kalendar-search-date {
-	width: 100%;
-}
-
 
 /*.table-bordered {
 	border: 2px solid blue;
